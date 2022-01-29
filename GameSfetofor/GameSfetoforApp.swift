@@ -7,11 +7,27 @@
 
 import SwiftUI
 
+enum Navigation {
+    case start;
+    case settings;
+    case game;
+}
+
 @main
 struct GameSfetoforApp: App {
+    
+    @State private var currentView: Navigation = .start
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            switch currentView {
+            case .start:
+                StartView(currentView: $currentView)
+            case .settings:
+                SettingsView(currentView: $currentView)
+            case .game:
+                GameView(currentView: $currentView)
+            }
         }
     }
 }
