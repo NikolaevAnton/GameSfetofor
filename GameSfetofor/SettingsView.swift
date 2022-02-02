@@ -26,7 +26,8 @@ struct SettingsView: View {
             CustomSlider(min: 1.0, max: 10.0, value: $attempt)
             Spacer()
             CustomButtonView(currentFunc: {
-                game.setValue(cycle: cycle)
+                game.setValue(cycle: cycle, frequency: frequency)
+                game.startTimer()
                 currentView = .game
             }, currentLabel: "Начать игру")
             CustomButtonView(currentFunc: {

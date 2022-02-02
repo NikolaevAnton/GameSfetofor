@@ -11,22 +11,24 @@ struct GameView: View {
     @Binding var currentView: Navigation
     @ObservedObject var game: GameLogic
     
-    @State var currentValue = ""
+    @State var currentValue = 0
 
     var body: some View {
         VStack {
             SfetoforView(
                 redButton:
-                    {
-                        game.startTimer()
-                        currentValue = "red"},
+                    { currentValue = game.checkChoiseColor(choiseColor: "red")
+                    },
                 yellowButton:
-                    { currentValue = "yellow"},
+                    { currentValue = game.checkChoiseColor(choiseColor: "yellow")
+                    },
                 greenButton:
-                    { currentValue = "green"}
+                    { currentValue = game.checkChoiseColor(choiseColor: "green")
+                    },
+                game: game
             )
             Spacer()
-            Text("value: \(currentValue)")
+            Text("value: \(currentValue)\n color: \(game.getCurrentColor().rawValue)")
             CustomButtonView(currentFunc: {
                 game.killValue()
                 currentView = .settings
