@@ -10,6 +10,8 @@ import SwiftUI
 struct SettingsView: View {
     
     @Binding var currentView: Navigation
+    @ObservedObject var game: GameLogic
+    
     @State private var cycle = 10.0
     @State private var frequency = 0.5
     @State private var attempt = 2.0
@@ -24,6 +26,7 @@ struct SettingsView: View {
             CustomSlider(min: 1.0, max: 10.0, value: $attempt)
             Spacer()
             CustomButtonView(currentFunc: {
+                game.setValue(cycle: cycle)
                 currentView = .game
             }, currentLabel: "Начать игру")
             CustomButtonView(currentFunc: {
@@ -36,6 +39,6 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView(currentView: .constant(.settings))
+        SettingsView(currentView: .constant(.settings), game: GameLogic())
     }
 }

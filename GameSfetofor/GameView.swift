@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GameView: View {
     @Binding var currentView: Navigation
+    @ObservedObject var game: GameLogic
     
     @State var currentValue = ""
 
@@ -16,7 +17,9 @@ struct GameView: View {
         VStack {
             SfetoforView(
                 redButton:
-                    { currentValue = "red"},
+                    {
+                        game.startTimer()
+                        currentValue = "red"},
                 yellowButton:
                     { currentValue = "yellow"},
                 greenButton:
@@ -25,9 +28,11 @@ struct GameView: View {
             Spacer()
             Text("value: \(currentValue)")
             CustomButtonView(currentFunc: {
+                game.killValue()
                 currentView = .settings
             }, currentLabel: "Перейти в настройки")
             CustomButtonView(currentFunc: {
+                game.killValue()
                 currentView = .start
             }, currentLabel: "Закончить игру")
         }
@@ -37,6 +42,6 @@ struct GameView: View {
 
 struct GameView_Previews: PreviewProvider {
     static var previews: some View {
-        GameView(currentView: .constant(.game))
+        GameView(currentView: .constant(.game), game: GameLogic())
     }
 }

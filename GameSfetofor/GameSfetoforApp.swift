@@ -17,6 +17,7 @@ enum Navigation {
 struct GameSfetoforApp: App {
     
     @State private var currentView: Navigation = .start
+    @StateObject private var game = GameLogic()
     
     var body: some Scene {
         WindowGroup {
@@ -24,9 +25,9 @@ struct GameSfetoforApp: App {
             case .start:
                 StartView(currentView: $currentView)
             case .settings:
-                SettingsView(currentView: $currentView)
+                SettingsView(currentView: $currentView, game: game)
             case .game:
-                GameView(currentView: $currentView)
+                GameView(currentView: $currentView, game: game)
             }
         }
     }
