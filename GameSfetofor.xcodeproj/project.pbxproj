@@ -14,6 +14,8 @@
 		4E76BFED27A5B1CA0000E5E1 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E76BFEC27A5B1CA0000E5E1 /* StartView.swift */; };
 		4E76BFEF27A5B1CB0000E5E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E76BFEE27A5B1CB0000E5E1 /* Assets.xcassets */; };
 		4E76BFF227A5B1CB0000E5E1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E76BFF127A5B1CB0000E5E1 /* Preview Assets.xcassets */; };
+		4E7AC77E27AABE2800AEFFB5 /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7AC77D27AABE2800AEFFB5 /* CustomSlider.swift */; };
+		4E7AC78027AAC77B00AEFFB5 /* SfetoforView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7AC77F27AAC77B00AEFFB5 /* SfetoforView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +27,8 @@
 		4E76BFEC27A5B1CA0000E5E1 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		4E76BFEE27A5B1CB0000E5E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4E76BFF127A5B1CB0000E5E1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4E7AC77D27AABE2800AEFFB5 /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
+		4E7AC77F27AAC77B00AEFFB5 /* SfetoforView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SfetoforView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +65,9 @@
 				4E76BFEC27A5B1CA0000E5E1 /* StartView.swift */,
 				4E1D404627A5B55700FA2D09 /* SettingsView.swift */,
 				4E1D404A27A5BCC300FA2D09 /* CustomButtonView.swift */,
+				4E7AC77D27AABE2800AEFFB5 /* CustomSlider.swift */,
 				4E1D404C27A5C03C00FA2D09 /* GameView.swift */,
+				4E7AC77F27AAC77B00AEFFB5 /* SfetoforView.swift */,
 				4E76BFEE27A5B1CB0000E5E1 /* Assets.xcassets */,
 				4E76BFF027A5B1CB0000E5E1 /* Preview Content */,
 			);
@@ -147,9 +153,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E1D404727A5B55700FA2D09 /* SettingsView.swift in Sources */,
+				4E7AC77E27AABE2800AEFFB5 /* CustomSlider.swift in Sources */,
 				4E76BFED27A5B1CA0000E5E1 /* StartView.swift in Sources */,
 				4E76BFEB27A5B1CA0000E5E1 /* GameSfetoforApp.swift in Sources */,
 				4E1D404B27A5BCC300FA2D09 /* CustomButtonView.swift in Sources */,
+				4E7AC78027AAC77B00AEFFB5 /* SfetoforView.swift in Sources */,
 				4E1D404D27A5C03C00FA2D09 /* GameView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

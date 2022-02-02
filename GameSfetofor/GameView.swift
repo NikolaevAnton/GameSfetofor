@@ -9,11 +9,21 @@ import SwiftUI
 
 struct GameView: View {
     @Binding var currentView: Navigation
+    
+    @State var currentValue = ""
 
     var body: some View {
         VStack {
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            SfetoforView(
+                redButton:
+                    { currentValue = "red"},
+                yellowButton:
+                    { currentValue = "yellow"},
+                greenButton:
+                    { currentValue = "green"}
+            )
             Spacer()
+            Text("value: \(currentValue)")
             CustomButtonView(currentFunc: {
                 currentView = .settings
             }, currentLabel: "Перейти в настройки")
