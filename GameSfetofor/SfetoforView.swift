@@ -14,6 +14,7 @@ struct SfetoforView: View {
     var greenButton: () -> Void
     @ObservedObject var game: GameLogic
     
+    
     var body: some View {
         VStack {
             Button {
@@ -40,8 +41,11 @@ struct SfetoforView: View {
                     .frame(width: 100)
                     .opacity(game.getCurrentColor() == .green ? 1.0 : 0.5)
             }
-        }.frame(height: 400)
+        }
+        .frame(height: 400)
     }
+    
+
 }
 
 struct SfetoforView_Previews: PreviewProvider {

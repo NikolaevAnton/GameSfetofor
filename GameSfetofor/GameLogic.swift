@@ -5,7 +5,7 @@
 //  Created by Anton Nikolaev on 02.02.2022.
 //
 
-import Foundation
+import SwiftUI
 import Combine
 
 enum ColorSfetofor: String {
@@ -15,6 +15,9 @@ enum ColorSfetofor: String {
 }
 
 class GameLogic: ObservableObject {
+    
+    var isEndGame = false
+    
     let objectWillChange = PassthroughSubject<GameLogic, Never>()
     
     var timer: Timer?
@@ -24,10 +27,12 @@ class GameLogic: ObservableObject {
     private var frequency = 0.5
     private var wins = 0
     private var currentColor: ColorSfetofor = .red
+    private var attempt = 2.0
     
-    func setValue(cycle: Double, frequency: Double) {
+    func setValue(cycle: Double, frequency: Double, attempt: Double) {
         self.cycle = cycle
         self.frequency = frequency
+        self.attempt = attempt
     }
     
     func killValue() {
@@ -35,6 +40,7 @@ class GameLogic: ObservableObject {
         self.cycle = 0.0
         self.frequency = 0.5
         self.wins = 0
+        self.attempt = 2.0
     }
     
     func startTimer() {
@@ -55,13 +61,24 @@ class GameLogic: ObservableObject {
     
     func checkChoiseColor(choiseColor: String) -> Int {
         if choiseColor == currentColor.rawValue {
-            print("Win for \(choiseColor)")
             wins += 1
         } else {
-            print("Lose for \(choiseColor)")
+            attempt -= 1
+            if attempt == 0 {
+                killTimer()
+                print("stooop")
+            }
         }
         return wins
     }
+    
+    func isLoseGame() -> Bool {
+        if attempt == 0 {
+            return true
+        }
+        return false
+    }
+    
     
     @objc private func updateCycle() {
         
@@ -79,14 +96,22 @@ class GameLogic: ObservableObject {
         if step < Int(cycle) {
             step += 1
         } else {
+            endGame()
             killTimer()
+            return
         }
         print("step: \(step) color: \(currentColor)")
         objectWillChange.send(self)
     }
     
+    private func endGame() {
+        isEndGame = true
+        print("End game")
+    }
+    
     private func killTimer() {
         timer?.invalidate()
         timer = nil
+        objectWillChange.send(self)
     }
 }

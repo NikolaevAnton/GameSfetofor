@@ -12,23 +12,35 @@ struct GameView: View {
     @ObservedObject var game: GameLogic
     
     @State var currentValue = 0
+    @State private var isLose = false
+    @State private var isEndGame = false
+
 
     var body: some View {
         VStack {
             SfetoforView(
                 redButton:
-                    { currentValue = game.checkChoiseColor(choiseColor: "red")
+                    {
+                        currentValue = game.checkChoiseColor(choiseColor: "red")
+                        isLose = game.isLoseGame()
+                        isEndGame = game.isEndGame
                     },
                 yellowButton:
-                    { currentValue = game.checkChoiseColor(choiseColor: "yellow")
+                    {
+                        currentValue = game.checkChoiseColor(choiseColor: "yellow")
+                        isLose = game.isLoseGame()
+                        isEndGame = game.isEndGame
                     },
                 greenButton:
-                    { currentValue = game.checkChoiseColor(choiseColor: "green")
+                    {
+                        currentValue = game.checkChoiseColor(choiseColor: "green")
+                        isLose = game.isLoseGame()
+                        isEndGame = game.isEndGame
                     },
                 game: game
             )
             Spacer()
-            Text("value: \(currentValue)\n color: \(game.getCurrentColor().rawValue)")
+            Text("value: \(currentValue)\n color: \(game.getCurrentColor().rawValue)\n end: \(String(game.isEndGame))")
             CustomButtonView(currentFunc: {
                 game.killValue()
                 currentView = .settings
@@ -37,6 +49,21 @@ struct GameView: View {
                 game.killValue()
                 currentView = .start
             }, currentLabel: "Закончить игру")
+        }
+        .alert("Lose\n Вы не справились в отведенное число попыток", isPresented: $isLose) {
+            Button("OK", role: .cancel) {
+                game.killValue()
+                currentView = .settings
+            }
+        }
+        .alert("Конец игры", isPresented: $isEndGame) {
+            VStack {
+                Text("Количество попаданий: \(currentValue)")
+                Button("OK", role: .cancel) {
+                    game.killValue()
+                    currentView = .settings
+                }
+            }
         }
         
     }
